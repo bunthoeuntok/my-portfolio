@@ -30,12 +30,18 @@ export class BootScene extends Phaser.Scene {
       progressBox.destroy()
       loadingText.destroy()
     })
-
-    // Load game assets here
-    // this.load.image('key', 'path/to/asset.png')
   }
 
   create(): void {
-    this.scene.start('GameScene')
+    this.generateStarParticle()
+    this.scene.start('HeroScene')
+  }
+
+  private generateStarParticle(): void {
+    const gfx = this.make.graphics({ x: 0, y: 0 })
+    gfx.fillStyle(0xffffff, 1)
+    gfx.fillCircle(4, 4, 4)
+    gfx.generateTexture('star-particle', 8, 8)
+    gfx.destroy()
   }
 }
